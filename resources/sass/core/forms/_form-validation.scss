@@ -8,7 +8,7 @@
 .has-danger {
     position: relative;
 
-    &:after, {
+    &:after{
         width: 19px;
         height: 19px;
         line-height: 19px;
@@ -16,7 +16,7 @@
         font-family: 'NucleoIcons';
         display: inline-block;
         position: absolute;
-        right: 15px;
+        left: 15px;
         top: 2px;
         transform: translateY(50%);
         border-radius: 50%;

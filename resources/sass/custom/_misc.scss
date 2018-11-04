@@ -1,0 +1,86 @@
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+  background-color: white !important;
+}
+input:-webkit-autofill ,textarea:-webkit-autofill, select:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.pin-center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.section.section-shaped{
+  min-height: 100vh;
+}
+.section-shaped .shape {
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.section-shaped .shape-style-1 span {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+.section-shaped .shape span {
+  position: absolute;
+}
+.section-shaped .shape-style-1 :nth-child(5) {
+  background: hsla(0,0%,100%,.05);
+  left: 1%;
+  right: auto;
+  top: 38%;
+}
+.section-shaped .shape-style-1 :first-child {
+  background: hsla(0,0%,100%,.1);
+  bottom: auto;
+  left: -4%;
+}
+.section-shaped .shape-style-1 :nth-child(2) {
+  background: hsla(0,0%,100%,.1);
+  right: 4%;
+  top: 10%;
+}
+.section-shaped .shape-style-1 :nth-child(4) {
+  background: hsla(0,0%,100%,.15);
+  right: 7%;
+  top: 320px;
+}
+.section-shaped .shape-style-1 :nth-child(5) {
+  background: hsla(0,0%,100%,.05);
+  left: 1%;
+  right: auto;
+  top: 38%;
+}
+.section-shaped .shape-style-1 :nth-child(6) {
+  background: hsla(0,0%,100%,.15);
+  height: 200px;
+  left: 10%;
+  right: auto;
+  top: 44%;
+  width: 200px;
+}
+.section-shaped .shape-style-1 :nth-child(7) {
+  background: hsla(0,0%,100%,.04);
+  bottom: 50%;
+  right: 36%;
+}
+.section-shaped .shape-style-1 :nth-child(8) {
+  background: hsla(0,0%,100%,.2);
+  bottom: 70px;
+  right: 2%;
+}
+.pt-lg-md, .py-lg-md {
+  padding-top: 4rem!important;
+}
+
+.main-content{
+  overflow: hidden;
+}

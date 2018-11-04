@@ -16,13 +16,15 @@
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
             <li class="nav-item dropdown">
-                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="https://cdn2.tokendaily.co/user-images/4a2359b48887048317100f5e5d28d0d6.jpeg">
+                  <img alt="{{__('User profile image')}}"
+                       src="{{auth()->user()->avatar ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaz8TR-QMmFtVKPImeFRoSHy1pZwHIvdBQ7gu5cHpWeS8H8lla'}}">
                 </span>
                         <div class="media-body ml-2 d-none d-lg-block">
-                            <span class="mb-0 text-sm  font-weight-bold">أويس ناما</span>
+                            <span class="mb-0 text-sm  font-weight-bold">{{ucwords(auth()->user()->name)}}</span>
                         </div>
                     </div>
                 </a>
@@ -47,10 +49,15 @@
                         <span>مساعده</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
+                    <a class="dropdown-item"
+                       onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                         <i class="ni ni-user-run"></i>
                         <span>تسجيل خروج</span>
                     </a>
+                    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+
                 </div>
             </li>
         </ul>

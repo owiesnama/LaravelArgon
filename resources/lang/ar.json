@@ -1,0 +1,15 @@
+{
+  "Login" : "تسجيل دخول",
+  "Login in now" : "سجل الان",
+  "Login by" : "تسجيل دخول بواسطة",
+  "Register by" : "سجل بواسطة",
+  "Username":"إسم المستخدم",
+  "Email" : "البريد الإلكتروني",
+  "Password":"كلمة المرور",
+  "Password confirm":"تأكيد كلمة المرور",
+  "Password strength" : "قوة كلمة المرور",
+  "Forgot Your Password?": "نسيت كلمة المرور ؟",
+  "Policy" : "الشروط والاحكام",
+  "Agree" : "أوافق على",
+  "Remember Me" : "تذكرني"
+}
