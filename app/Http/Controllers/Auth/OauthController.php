@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
@@ -36,7 +37,7 @@ class OauthController extends Controller
     {
         try {
             $user = Socialite::driver('github')->user();
-        } catch (Exception $e) {
+         } catch (Exception $e) {
             return \redirect('auth/github');
         }
 
@@ -58,12 +59,15 @@ class OauthController extends Controller
         if ($authUser = User::where('github_id', $githubUser->id)->first()) {
             return $authUser;
         }
-        return User::create([
+        $user =  User::create([
             'name' => $githubUser->nickname,
             'email' => $githubUser->email,
             'github_id' => $githubUser->id,
             'avatar' => $githubUser->avatar,
             'password' => Hash::make($githubUser->nickname)
         ]);
+        $user->initializeProfile($authUser);
+
+        return $user;
     }
 }

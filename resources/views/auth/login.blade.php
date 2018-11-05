@@ -1,43 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {{--<!-- CSRF Token -->--}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login</title>
-    <!-- Favicon -->
-    <link href="{{asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <!-- Icons -->
-    <link href="{{asset('fonts/nucleoIcons/css/nucleo.css')}}" rel="stylesheet">
-    <link href="{{asset('fonts/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-    <!-- Argon CSS -->
-    <!--<link type="text/css" href="../assets/css/argon.css?v=1.0.0" rel="stylesheet">-->
-    <!--Argon rtl CSS-->
-    <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
-</head>
-
-<body class="bg-default">
-<div class="main-content" id="app">
-    <section class="section section-shaped section-lg my-0">
-        <div class="shape shape-style-1 bg-gradient-default">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </section>
-
-    <!-- Page content -->
-    <div class="container pt-lg-md pin-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-7">
-                <div class="card bg-secondary shadow border-0">
-                    <div class="card-body px-lg-5 py-lg-5">
+@extends('layouts.auth')
+@section('content')
+    <div class="card-body px-lg-5 py-lg-5">
                         <div class="card-header bg-transparent pb-5">
                             <div class="text-muted text-center mt-2 mb-4">
                                 <small>{{__('Login by')}}</small>
@@ -114,28 +77,20 @@
                             </div>
                         </form>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <a href="{{ route('password.request') }}" class="text-light">
-                            <small>
-                                {{ __('Forgot Your Password?') }}
-                            </small>
-                        </a>
-                    </div>
-                    <div class="col-6 text-right">
-                        <a href="{{route('register')}}" class="text-light">
-                            <small>انشاء حساب جديد</small>
-                        </a>
-                    </div>
-                </div>
-            </div>
+@endsection
+@section('footer')
+    <div class="row mt-3">
+        <div class="col-6">
+            <a href="{{ route('password.request') }}" class="text-light">
+                <small>
+                    {{ __('Forgot Your Password?') }}
+                </small>
+            </a>
+        </div>
+        <div class="col-6 text-right">
+            <a href="{{route('register')}}" class="text-light">
+                <small>انشاء حساب جديد</small>
+            </a>
         </div>
     </div>
-</div>
-
-<script src="{{asset('js/app.js')}}"></script>
-<!-- Argon JS -->
-</body>
-
-</html>
+@endsection

@@ -28,8 +28,6 @@
 
         <div class="main-content">
 
-            @include('partials.topNavbar')
-            @include('partials.header')
 
             @yield('content')
 
