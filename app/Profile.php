@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    protected $guarded = ['id'];
+    protected $guarded = ['id','user_id'];
     /**
      * return the owner of the profile
      *

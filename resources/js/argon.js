@@ -928,6 +928,7 @@ let OrdersChart = (function() {
 	function initChart($chart) {
 
 		// Create chart
+
 		let ordersChart = new Chart($chart, {
 			type: 'bar',
 			options: {

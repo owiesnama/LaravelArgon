@@ -32,7 +32,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','email_verified_at','github_id',
     ];
 
     /**
@@ -55,13 +55,20 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function initializeProfile($user = null)
+    /**
+     * initiate the user profile
+     *
+     * @param null $user
+     * @return Profile
+     */
+    public function initializeProfile($providerUser = null)
     {
         $profile = new Profile();
         $profile->user_id = $this->id;
 
-        if ($user) {
-            $profile->bio = $user->id;
+        if ($providerUser) {
+            $profile->bio = $providerUser->user['bio'];
+            $profile->avatar = $providerUser->avatar;
         }
 
         $profile->save();

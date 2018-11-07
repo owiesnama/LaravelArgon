@@ -5,13 +5,25 @@
  */
 
 require('./bootstrap');
+require('chart.js/dist/Chart');
 require('./argon');
+
 window.Vue = require('vue');
 
-
+/**
+ * Register our algolia instant search wrapper
+ * globally so we can reference it anywhere
+ */
 import Instantsearch from 'vue-instantsearch'
-
 Vue.use(Instantsearch)
+
+/**
+ * Register our croppa plugin globally,
+ * its a image uploader component
+ */
+
+import Croppa from 'vue-croppa'
+Vue.use(Croppa)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -25,7 +37,7 @@ Vue.component('instantSearch', require('./components/InstantSearch.vue'))
  * Next, we will import all our vue inline templates
  * and we will refere to it as views
  */
-Vue.component('ProfileView',require('./views/ProfileView.vue'))
+Vue.component('ProfileView', require('./pages/ProfileView.vue'))
 
 const app = new Vue({
     el: '#app'

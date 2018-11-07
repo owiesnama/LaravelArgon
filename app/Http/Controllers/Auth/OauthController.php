@@ -63,10 +63,10 @@ class OauthController extends Controller
             'name' => $githubUser->nickname,
             'email' => $githubUser->email,
             'github_id' => $githubUser->id,
-            'avatar' => $githubUser->avatar,
             'password' => Hash::make($githubUser->nickname)
         ]);
-        $user->initializeProfile($authUser);
+
+        $user->initializeProfile($githubUser);
 
         return $user;
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <profile-view inline-template>
+    <profile-view :initial-user-info="{{$user}}" inline-template>
         <div>
             @include('partials.header')
 
@@ -10,14 +10,12 @@
                 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
                      style="min-height: 600px; background-image: url({{$user->header}}); background-size: cover; background-position: center top;">
                     <!-- Mask -->
-                    <span class="mask bg-gradient-default opacity-8"></span>
+                    <span class="mask bg-gradient-primary opacity-8"></span>
                     <!-- Header container -->
                     <div class="container-fluid d-flex align-items-center">
                         <div class="row">
                             <div class="col-lg-7 col-md-10">
                                 <h1 class="display-2 text-white">Hello {{$user->name}}</h1>
-                                <p class="text-white mt-0 mb-5">{{$user->profile->bio}}</p>
-
                             </div>
                         </div>
                     </div>
@@ -32,7 +30,23 @@
                                     <div class="col-lg-3 order-lg-2">
                                         <div class="card-profile-image">
                                             <a href="#">
-                                                <img src="{{$user->avatar}}" class="rounded-circle">
+                                                <div class="rounded-circle position-relative w-100">
+                                                <croppa class="position-relative d-flex justify-content-center align-items-center"
+                                                        v-model="avatar"
+                                                        :width="220"
+                                                        :height="220"
+                                                        initial-size="cover"
+                                                        prevent-white-space
+                                                        :show-remove-button="avatarEdit"
+                                                        @click="toggleAvatarEdit"
+                                                        initial-image="{{$user->profile->avatar}}">
+                                                        <img    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaz8TR-QMmFtVKPImeFRoSHy1pZwHIvdBQ7gu5cHpWeS8H8lla'
+                                                                slot="placeholder" alt="" class="rounded-circle">
+                                                </croppa>
+
+                                                </div>
+
+                                                {{--                                                <img src="{{$user->profile->avatar}}" class="rounded-circle">--}}
                                             </a>
                                         </div>
                                     </div>
@@ -51,10 +65,11 @@
                                                     {{$user->name}}<span
                                                             class="font-weight-light">{{$user->profile->age}}</span>
                                                 </h3>
+                                                <p class="text-muted mt-0 mb-5">{{$user->profile->bio}}</p>
                                                 <span class="text-muted">
-                                        <i class="ni location_pin mr-2"></i>{{$user->profile->country}}
-                                                    ,{{$user->profile->city}}
-                                    </span>
+                                                        <i class="ni location_pin mr-2"></i>
+                                                    {{$user->profile->country}},{{$user->profile->city}}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -81,6 +96,8 @@
                                         <div class="col-4 text-right">
                                             <button type="submit"
                                                     role="button"
+                                                    @click="update()"
+                                                    :disabled="profileForm.errors.any()"
                                                     class="btn btn-sm btn-primary">{{__('Update profile')}}</button>
                                         </div>
 
@@ -88,7 +105,13 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <form role="form" @submit.prevent="update">
+                                    <form role="form"
+                                          method="POST"
+                                          @submit.prevent="update"
+                                          @keydown="profileForm.errors.clear($event.target.name)"
+                                          ref="form">
+                                        {{method_field('patch')}}
+                                        @csrf
                                         <h6 class="heading-small text-muted mb-4">{{__('User info')}}</h6>
                                         <div class="pl-lg-4">
                                             <div class="row">
@@ -99,11 +122,12 @@
                                                                for="input-username">{{__('Username')}}</label>
 
                                                         <input
-                                                               type="text"
-                                                               id="input-username"
-                                                               class="form-control form-control-alternative"
-                                                               placeholder="Username"
-                                                               value="{{$user->name}}">
+                                                                type="text"
+                                                                id="input-username"
+                                                                class="form-control form-control-alternative"
+                                                                placeholder="Username"
+                                                                readonly
+                                                                v-model="user.name">
                                                     </div>
 
                                                 </div>
@@ -115,11 +139,12 @@
 
 
                                                         <input
-                                                               type="email"
-                                                               id="input-email"
-                                                               value="{{$user->email}}"
-                                                               class="form-control form-control-alternative"
-                                                               placeholder="jesse@example.com">
+                                                                type="email"
+                                                                id="input-email"
+                                                                v-model="user.email"
+                                                                readonly
+                                                                class="form-control form-control-alternative"
+                                                                placeholder="jesse@example.com">
                                                     </div>
 
                                                 </div>
@@ -137,43 +162,65 @@
                                                                for="input-address">{{__('Address')}}</label>
 
                                                         <input
-                                                               id="input-address"
-                                                               class="form-control form-control-alternative"
-                                                               placeholder="Home Address"
-                                                               value="{{$user->profile->address}}"
-                                                               type="text">
+                                                                id="input-address"
+                                                                class="form-control form-control-alternative"
+                                                                name="address"
+                                                                placeholder="Home Address"
+                                                                v-model="profileForm.address"
+                                                                type="text">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label class="form-control-label"
                                                                for="input-city">{{__('City')}}</label>
 
                                                         <input
-                                                               type="text"
-                                                               id="input-city"
-                                                               class="form-control form-control-alternative"
-                                                               value="{{$user->profile->city}}"
-                                                               placeholder="{{$user->profile->city}}" value="New York">
+                                                                type="text"
+                                                                id="input-city"
+                                                                class="form-control form-control-alternative"
+                                                                name="city"
+                                                                v-model="profileForm.city"
+                                                                placeholder="{{$user->profile->city}}">
                                                     </div>
                                                 </div>
 
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label class="form-control-label"
                                                                for="input-country">{{__('Country')}}</label>
 
                                                         <input
-                                                               type="text"
-                                                               id="input-country"
-                                                               class="form-control form-control-alternative"
-                                                               placeholder="{{$user->profile->country}}"
-                                                               value="{{$user->profile->country}}">
+                                                                type="text"
+                                                                id="input-country"
+                                                                name="country"
+                                                                class="form-control form-control-alternative"
+                                                                placeholder="{{$user->profile->country}}"
+                                                                v-model="profileForm.country">
                                                     </div>
                                                 </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                               for="input-phone">{{__('Phone')}}</label>
+
+                                                        <cleave class="form-control-alternative"
+                                                                ref="cleave"
+                                                                v-model="profileForm.phone"
+                                                                placeholder="{{__('Please enter your phone number')}}"
+                                                                name="phone"
+                                                                :options="cleaveOptions">
+
+                                                        </cleave>
+
+
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
 
@@ -185,13 +232,13 @@
                                             <div class="form-group">
                                                 <label>{{__('Bio')}}</label>
                                                 <textarea rows="4"
+                                                          name="bio"
+                                                          v-model="profileForm.bio"
                                                           class="form-control form-control-alternative"
-                                                          placeholder="A few words about you ...">{{$user->profile->bio}}
+                                                          placeholder="A few words about you ...">@{{profileForm.bio}}
                                             </textarea>
                                             </div>
                                         </div>
-
-
                                     </form>
                                 </div>
                             </div>

@@ -19432,8 +19432,7 @@ button.bg-darker:focus {
           box-shadow: 0 0 0.5rem rgba(136, 152, 170, 0.075) !important;
 }
 
-.shadow,
-.card-profile-image img {
+.shadow {
   -webkit-box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
           box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
 }
@@ -24660,6 +24659,14 @@ select:-webkit-autofill {
   overflow: hidden;
 }
 
+span.badge-warning {
+  margin-top: 5px;
+}
+
+span.badge-warning:empty {
+  display: none;
+}
+
 .bg-blue {
   background-color: #5e72e4 !important;
 }
@@ -26903,7 +26910,7 @@ a.btn-icon-only {
   position: relative;
 }
 
-.card-profile-image img {
+.card-profile-image div.rounded-circle {
   max-width: 180px;
   border-radius: 0.375rem;
   -webkit-transform: translate(-50%, -30%);
@@ -26914,7 +26921,7 @@ a.btn-icon-only {
   transition: all 0.15s ease;
 }
 
-.card-profile-image img:hover {
+.card-profile-image div.rounded-circle:hover {
   -webkit-transform: translate(-50%, -33%);
           transform: translate(-50%, -33%);
 }
@@ -26946,6 +26953,10 @@ a.btn-icon-only {
 
 .card-profile-actions {
   padding: .875rem;
+}
+
+.croppa-container canvas {
+  border-radius: 50% !important;
 }
 
 .card-blockquote {

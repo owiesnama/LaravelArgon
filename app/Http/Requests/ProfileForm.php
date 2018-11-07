@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Profile;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileForm extends FormRequest
@@ -13,7 +14,7 @@ class ProfileForm extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,12 +25,21 @@ class ProfileForm extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required'
+            'bio'=> 'required'
         ];
     }
 
-    public function persist(){
+    public function persist($user = null)
+    {
+        if ($user) {
+            $user = Profile::where('user_id', \Auth::id())
+                ->update($this->except(['_token','_method','name','email']));
+            return $user;
+        }
 
+        $user = Profile::where('user_id', \Auth::id())
+            ->update($this->except(['_token','_method','name','email']));
+
+        return $user;
     }
 }
