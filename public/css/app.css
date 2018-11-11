@@ -26910,7 +26910,7 @@ a.btn-icon-only {
   position: relative;
 }
 
-.card-profile-image div.rounded-circle {
+.card-profile-image img.rounded-circle {
   max-width: 180px;
   border-radius: 0.375rem;
   -webkit-transform: translate(-50%, -30%);
@@ -26921,7 +26921,7 @@ a.btn-icon-only {
   transition: all 0.15s ease;
 }
 
-.card-profile-image div.rounded-circle:hover {
+.card-profile-image img.rounded-circle:hover {
   -webkit-transform: translate(-50%, -33%);
           transform: translate(-50%, -33%);
 }

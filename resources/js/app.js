@@ -18,13 +18,20 @@ import Instantsearch from 'vue-instantsearch'
 Vue.use(Instantsearch)
 
 /**
- * Register our croppa plugin globally,
- * its a image uploader component
+ * Register our flash message
+ * plugin globally,
  */
 
-import Croppa from 'vue-croppa'
-Vue.use(Croppa)
+import VueFlashMessage from 'vue-flash-message';
+import'vue-flash-message/dist/vue-flash-message.min.css';
 
+Vue.use(VueFlashMessage, {
+    messageOptions: {
+        timeout: 1000,
+        important: true,
+        pauseOnInteract: true
+    }
+})
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

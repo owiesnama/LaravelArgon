@@ -24,7 +24,7 @@
                     <template slot-scope="{ result }">
                         <li class="list-group-item list-group-item-flex">
                               <span class="avatar avatar-sm rounded-circle">
-                                <img :src="result.avatar ||
+                                <img :src="result.profile.avatar ||
                                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaz8TR-QMmFtVKPImeFRoSHy1pZwHIvdBQ7gu5cHpWeS8H8lla'">
                               </span>
                             <ais-highlight :result="result" attribute-name="name"></ais-highlight>

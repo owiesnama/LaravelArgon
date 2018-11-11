@@ -30,23 +30,21 @@
                                     <div class="col-lg-3 order-lg-2">
                                         <div class="card-profile-image">
                                             <a href="#">
-                                                <div class="rounded-circle position-relative w-100">
-                                                <croppa class="position-relative d-flex justify-content-center align-items-center"
-                                                        v-model="avatar"
-                                                        :width="220"
-                                                        :height="220"
-                                                        initial-size="cover"
-                                                        prevent-white-space
-                                                        :show-remove-button="avatarEdit"
-                                                        @click="toggleAvatarEdit"
-                                                        initial-image="{{$user->profile->avatar}}">
-                                                        <img    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaz8TR-QMmFtVKPImeFRoSHy1pZwHIvdBQ7gu5cHpWeS8H8lla'
-                                                                slot="placeholder" alt="" class="rounded-circle">
-                                                </croppa>
+                                                    {{--<croppa class="position-relative d-flex justify-content-center align-items-center"--}}
+                                                    {{--v-model="avatar"--}}
+                                                    {{--:width="220"--}}
+                                                    {{--:height="220"--}}
+                                                    {{--initial-size="cover"--}}
+                                                    {{--prevent-white-space--}}
+                                                    {{--:show-remove-button="avatarEdit"--}}
+                                                    {{--@click="toggleAvatarEdit"--}}
+                                                    {{--initial-image="{{$user->profile->avatar}}">--}}
+                                                    {{--<img    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaz8TR-QMmFtVKPImeFRoSHy1pZwHIvdBQ7gu5cHpWeS8H8lla'--}}
+                                                    {{--slot="placeholder" alt="" class="rounded-circle">--}}
+                                                    {{--</croppa>--}}
 
-                                                </div>
+                                                    <img src="{{$user->profile->avatar}}" class="rounded-circle">
 
-                                                {{--                                                <img src="{{$user->profile->avatar}}" class="rounded-circle">--}}
                                             </a>
                                         </div>
                                     </div>

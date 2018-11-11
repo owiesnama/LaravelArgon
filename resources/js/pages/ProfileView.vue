@@ -26,6 +26,9 @@
              */
             update(){
                 this.profileForm.patch('/profile')
+                    .then(response=>{
+                        this.flash('profile has updated successfully','success')
+                    })
                     .catch(error => console.log(error))
             },
             /**

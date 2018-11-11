@@ -29,7 +29,7 @@
             @yield('content')
 
         </div>
-
+        <flash-message class="alert" transitionName="fade"></flash-message>
     </div>
 
     <!-- Scripts -->
