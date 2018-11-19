@@ -1,6 +1,6 @@
 
 # Laravel Argon
-laravel reay to use project that providing some essential features that any project need
+laravel ready to use project that providing some essential features that any project needs
 
 
 ### Features
