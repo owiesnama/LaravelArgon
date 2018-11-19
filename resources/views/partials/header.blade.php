@@ -7,8 +7,11 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                     </div>
-                    <instant-search placeholder="{{__('Search')}}"></instant-search>
+
+                    <instant-search placeholder="{{__('Search')}}"
+                                    no-result-placeholder="{{__('Ops, we tried our best but we did not found what are you looking for')}}"></instant-search>
                     {{--<input class="form-control" placeholder="ابحث" type="text">--}}
+
                 </div>
             </div>
         </form>
@@ -20,7 +23,7 @@
                     <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
                   <img alt="{{__('User profile image')}}"
-                       src="{{auth()->user()->avatar ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaz8TR-QMmFtVKPImeFRoSHy1pZwHIvdBQ7gu5cHpWeS8H8lla'}}">
+                       src="{{auth()->user()->profile->avatar ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaz8TR-QMmFtVKPImeFRoSHy1pZwHIvdBQ7gu5cHpWeS8H8lla'}}">
                 </span>
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{ucwords(auth()->user()->name)}}</span>

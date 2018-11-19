@@ -23,3 +23,4 @@ Route::get('auth/github', 'Auth\OauthController@redirectToProvider')->name('gith
 Route::get('auth/github/register', 'Auth\OauthController@handleProviderCallback');
 
 Route::get('/profile','ProfileController@index');
+Route::patch('/profile/{user?}','ProfileController@update');

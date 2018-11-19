@@ -7,8 +7,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Scout\Searchable;
 
+/**
+ * @property int id
+ * @property string name
+ * @property string email
+ */
 class User extends Authenticatable
 {
+
     use Notifiable;
     /*
      * Adding the searchable trait which provided
@@ -23,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'github_id'
+        'name', 'email', 'password', 'github_id'
     ];
 
     /**
@@ -32,8 +38,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email_verified_at', 'github_id',
     ];
+    protected $touches = ['profile'];
 
     /**
      * Get the index name for the model.
@@ -46,6 +53,16 @@ class User extends Authenticatable
     }
 
     /**
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $this->profile;
+
+        return $this->toArray();
+    }
+
+    /**
      * Return the user profile info
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -53,19 +70,5 @@ class User extends Authenticatable
     public function profile()
     {
         return $this->hasOne(Profile::class);
-    }
-
-    public function initializeProfile($user = null)
-    {
-        $profile = new Profile();
-        $profile->user_id = $this->id;
-
-        if ($user) {
-            $profile->bio = $user->id;
-        }
-
-        $profile->save();
-
-        return $profile;
     }
 }

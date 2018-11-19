@@ -1,3 +1,4 @@
+
 # Laravel Argon
 laravel reay to use project that providing some essential features that any project need
 
@@ -59,7 +60,3 @@ $ npm run dev
 ```
 
 Enjoy coding  :)
-
-
-
-

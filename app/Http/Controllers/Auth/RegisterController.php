@@ -70,8 +70,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->initializeProfile();
-
         return $user;
     }
 }

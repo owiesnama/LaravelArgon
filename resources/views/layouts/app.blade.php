@@ -19,20 +19,17 @@
     {{--icons--}}
     <link href="{{asset('fonts/nucleoIcons/css/nucleo.css')}}" rel="stylesheet">
     <link href="{{asset('fonts/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-
-    <link type="text/css" href="{{asset('css/argon-rtl.css')}}" rel="stylesheet">
-    </head>
+ </head>
 <body>
     <div id="app">
         @include('partials.sidebar')
 
         <div class="main-content">
 
-
             @yield('content')
 
         </div>
-
+        <flash-message class="alert" transitionName="fade"></flash-message>
     </div>
 
     <!-- Scripts -->

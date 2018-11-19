@@ -9,12 +9,12 @@
                                 <a href="{{route('github')}}" class="btn btn-neutral btn-icon mr-4">
                                     <span class="btn-inner--icon"><img
                                                 src="{{asset('img/icons/common/github.svg')}}"></span>
-                                    <span class="btn-inner--text">Github</span>
+                                    <span class="btn-inner--text text-dark">Github</span>
                                 </a>
                                 <a href="#" class="btn btn-neutral btn-icon">
                                     <span class="btn-inner--icon"><img
                                                 src="{{asset('img/icons/common/google.svg')}}"></span>
-                                    <span class="btn-inner--text">Google</span>
+                                    <span class="btn-inner--text text-dark">Google</span>
                                 </a>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
 
                                 </div>
                                 @if ($errors->has('email'))
-                                    <span class="badge badge-pill badge-warning mt--1" role="alert">
+                                    <span class="badge badge-pill badge-warning" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
@@ -54,7 +54,7 @@
                                 </div>
 
                                 @if ($errors->has('password'))
-                                    <span class="has-danger" role="alert">
+                                    <span class="badge badge-pill badge-warning" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
